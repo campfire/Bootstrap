@@ -1,0 +1,12 @@
+bin/
+obj/
+Debug/
+Release/
+artifacts/
+.vs/
+Makefile*
+*.lib
+*.pro.user*
+*.user.*
+*.user
+.qmake.stash
