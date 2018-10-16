@@ -1,5 +1,7 @@
+#ifndef LIBRARY_ENVIRONMENT_BAREMETAL
 #include <QApplication>
 #include <QDir>
+#endif
 #include "Environment.h"
 
 typedef void (Callback)();
@@ -18,6 +20,7 @@ extern "C" {
 		if (type == 0) {
 			(*callback)();
 		} else {
+			#ifndef LIBRARY_ENVIRONMENT_BAREMETAL
 			switch (type) {
 				case 1:
 					app = new QCoreApplication(argumentCount, argumentValues);
@@ -31,6 +34,7 @@ extern "C" {
 			}
 			(*callback)();
 			((QCoreApplication *)app)->exec();
+			#endif
 		}
 	}
 }

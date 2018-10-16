@@ -61,10 +61,8 @@ extern "C" {
 				throw "Failed to create application domain";
 			PManagedEntryPoint pManagedEntryPoint;
 			hr = clrRuntimeHost->CreateDelegate(domainId, L"Quasimodo.Bootstrap", L"Bootstrap.Global", L"CoreBootstrap", (INT_PTR*)&pManagedEntryPoint);
-			if (FAILED(hr)) {
-				cout<<hr<<endl;
+			if (FAILED(hr))
 				throw "Entry point not found";
-				}
 			pManagedEntryPoint();
 			clrRuntimeHost->UnloadAppDomain(domainId, true);
 			clrRuntimeHost->Stop();

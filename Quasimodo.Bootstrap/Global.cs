@@ -9,10 +9,10 @@ namespace Bootstrap
         static Callback callback;
         static object instance;
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", CallingConvention = CallingConvention.Winapi)]
         static extern ErrorModes SetErrorMode(ErrorModes mode);
 
-        [DllImport("Environment")]
+        [DllImport("Environment", CallingConvention = CallingConvention.Cdecl)]
         static extern void Environment_initialize(BootstrapType type, Callback callback);
 
         static int ClrBootstrap(string arguments)
@@ -27,6 +27,7 @@ namespace Bootstrap
             var fileName = Environment.GetEnvironmentVariable(ENTRYPOINT_ENVIRONMENT_NAME);
             Environment.SetEnvironmentVariable(ENTRYPOINT_ENVIRONMENT_NAME, null);
             Main(fileName);
+
         }
 
         static void Main(string fileName)
